@@ -3,9 +3,13 @@ import java.awt.event.MouseEvent;
 import java.applet.Applet;
 import java.awt.Graphics;
 
-public class ExampleEventHandling extends Applet{ 
-   StringBuffer strBuffer;
 
+
+
+public class ExampleEventHandling extends Applet implements Runnable{ 
+   StringBuffer strBuffer;
+    Ball ballOne = new Ball(30 , 30 , 50 , 1 , 1);
+    Ball ballTwo = new Ball(200 , 200 , 50 , 1 , 1);
    public void init() {
       strBuffer = new StringBuffer();
       addItem("initializing the apple ");
@@ -13,6 +17,33 @@ public class ExampleEventHandling extends Applet{
 
    public void start() {
       addItem("starting the applet ");
+      Thread th = new Thread(this);
+      th.start();
+   }
+
+   public void run(){
+     while(true){
+        int width = getWidth();
+        int height = getHeight();
+        ballOne.updateLim(width, height);
+        ballTwo.updateLim(width, height);
+
+        ballOne.updatePosX();
+        ballOne.updatePosY();
+        ballOne.checkOtherBall(ballTwo);
+
+        ballTwo.updatePosX();
+        ballTwo.updatePosY();
+        ballTwo.checkOtherBall(ballOne);
+
+        repaint();
+        try{
+          Thread.sleep(5);
+        }
+        catch(Exception e){
+          System.out.println("thread sleep");
+        }
+     }
    }
 
    public void stop() {
@@ -31,24 +62,8 @@ public class ExampleEventHandling extends Applet{
 
    public void paint(Graphics g) {
       // Draw a Rectangle around the applet's display area.
-      
-      g.fillOval(30, 30 , 50, 50);
-
-
+        ballOne.fillBall(g);
+        ballTwo.fillBall(g);
    }
 
-}
-
-public class Ball{
-    int posX, posY, diameter;
-    int updateX, updateY;
-    Ball(int X , int Y , int D , int uX , int uY){
-        posX = X;
-        posY = Y;
-        diameter = D;
-        updateX = uX;
-        updateY = uY;
-    }
-
-    
 }
