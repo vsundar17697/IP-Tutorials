@@ -1,0 +1,10 @@
+<web-app>
+    <servlet>
+        <servlet-name>session</servlet-name>
+        <servlet-class>session</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>session</servlet-name>
+        <url-pattern>/session</url-pattern>
+    </servlet-mapping>
+</web-app>

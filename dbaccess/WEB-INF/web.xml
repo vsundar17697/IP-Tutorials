@@ -1,0 +1,10 @@
+<web-app>
+    <servlet>
+        <servlet-name>jdbc</servlet-name>
+        <servlet-class>jdbc</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>jdbc</servlet-name>
+        <url-pattern>/jdbc</url-pattern>
+    </servlet-mapping>
+</web-app>
