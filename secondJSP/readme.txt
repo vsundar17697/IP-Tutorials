@@ -1,0 +1,1 @@
+In this application, the aim is to use core tags to get the name of the user and welcome him/her to the Second JSP application.

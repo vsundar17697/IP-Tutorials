@@ -1,0 +1,1 @@
+In this application, the aim is to use scriplet tags to get the name of the user and welcome him/her to the First JSP application.
